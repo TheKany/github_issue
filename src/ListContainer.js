@@ -5,6 +5,7 @@ import styles from './styles/css/ListContainer.module.css';
 import Button from './components/Button';
 import ListItem from './components/ListItem';
 import ListItemLayout from './components/ListItemLayout';
+import Modal from './components/Modal';
 
 const OpenClosedFilter = ({ size, state, onClick, selected }) => {
   return (
@@ -44,29 +45,48 @@ const OpenClosedFilters = ({ data }) => {
   );
 };
 
-const ListFilterItem = ({ onClick, children }) => {
+const ListFilterItem = ({ onClick, children, onChangeFilter }) => {
+  const [showModal, setShowModal] = useState(false);
   return (
-    <span role="button" onClick={onClick}>
-      {children} ▾
-    </span>
+    <div className={styles.filterItem}>
+      <span role="button" onClick={() => setShowModal(true)}>
+        {children} ▾
+      </span>
+      <div className={styles.modalContainer}>
+        <Modal
+          opened={showModal}
+          onClose={() => setShowModal(false)}
+          placeholder="Filter labels"
+          searchDataList={['bug', 'Labels', 'Apple']}
+          onClickCell={() => {
+            onChangeFilter();
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
-const ListFilter = () => {
+const ListFilter = ({ onChangeFilter }) => {
+  // const [showModal, setShowModal] = useState(false);
+
   return (
-    <div className={styles.filterList}>
-      <ListFilterItem>Author</ListFilterItem>
-      <ListFilterItem>Label</ListFilterItem>
-      <ListFilterItem>Projects</ListFilterItem>
-      <ListFilterItem>Milestones</ListFilterItem>
-      <ListFilterItem>Assignee</ListFilterItem>
-      <ListFilterItem>Sort</ListFilterItem>
-    </div>
+    <>
+      <div className={styles.filterList}>
+        <ListFilterItem>Author</ListFilterItem>
+        <ListFilterItem>Label</ListFilterItem>
+        <ListFilterItem>Projects</ListFilterItem>
+        <ListFilterItem>Milestones</ListFilterItem>
+        <ListFilterItem>Assignee</ListFilterItem>
+        <ListFilterItem>Sort</ListFilterItem>
+      </div>
+    </>
   );
 };
 
 const ListContainer = () => {
   const [inputValue, setInputValue] = useState('is:pr is:open');
+  const [list, setList] = useState([]);
 
   return (
     <div className={styles.listContainer}>
@@ -92,18 +112,21 @@ const ListContainer = () => {
       <OpenClosedFilters />
 
       <ListItemLayout className={styles.listFilter}>
-        <ListFilter />
+        <ListFilter onChangeFilter={(filteredData) => {}} />
       </ListItemLayout>
 
       <div className={styles.ListItemcontainer}>
-        <ListItem
-          badges={[
-            {
-              bgColor: 'red',
-              title: 'bug',
-            },
-          ]}
-        />
+        {list.map((listItem, idx) => {
+          <ListItem
+            key={idx}
+            badges={[
+              {
+                bgColor: 'red',
+                title: 'bug',
+              },
+            ]}
+          />;
+        })}
       </div>
     </div>
   );

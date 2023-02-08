@@ -1,0 +1,39 @@
+.modal {
+  display: none;
+  width: 300px;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+  background-color: #fff;
+  position: absolute;
+  z-index: 9999;
+}
+
+.modal .header {
+  display: flex;
+  padding: 7px 7px 7px 16px;
+  border-bottom: 1px solid #d0d7de;
+  align-items: center;
+}
+
+.modal .header > span {
+  flex: 1;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.opened {
+  display: block;
+}
+
+.modal .input {
+  padding: 8px;
+}
+
+.input input {
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  width: 100%;
+  padding: 5px 12px;
+  line-height: 20px;
+}

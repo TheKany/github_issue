@@ -34,7 +34,7 @@
   align-items: center;
 }
 
-.filterList > span {
+.filterList .filterItem > span {
   padding: 0 16px;
   line-height: 21px;
   font-size: 14px;
@@ -42,7 +42,7 @@
   cursor: pointer;
 }
 
-.filterList > span:hover {
+.filterList .filterItem > span:hover {
   color: #000;
   font-weight: 500;
 }
@@ -54,4 +54,14 @@
 
 .selected {
   font-weight: 700;
+}
+
+.filterList .filterItem {
+  position: relative;
+}
+
+.filterList .filterItem .modalContainer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
