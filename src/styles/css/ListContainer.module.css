@@ -65,3 +65,8 @@
   top: 20px;
   left: 20px;
 }
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+}

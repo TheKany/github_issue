@@ -134,13 +134,15 @@ const ListContainer = () => {
           })}
         </div>
       </div>
-      <Pagination
-        maxPage={MAX_PAGE}
-        currentPage={page}
-        onClickPageButton={(number) => {
-          setPage(number);
-        }}
-      />
+      <div className={styles.paginationContainer}>
+        <Pagination
+          maxPage={MAX_PAGE}
+          currentPage={page}
+          onClickPageButton={(number) => {
+            setPage(number);
+          }}
+        />
+      </div>
     </>
   );
 };
