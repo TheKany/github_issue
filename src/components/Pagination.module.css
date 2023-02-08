@@ -1,0 +1,27 @@
+.button {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 6px;
+}
+
+.arrowButton {
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: #0969da;
+}
+
+.arrowButton:hover,
+.button:hover {
+  background-color: #d0d7de;
+}
+
+.selected {
+  background-color: #0969da !important;
+  color: #fff;
+}
+
+.disabled {
+  color: #8c959f;
+  pointer-events: none;
+}
