@@ -37,6 +37,14 @@
 .filterList > span {
   padding: 0 16px;
   line-height: 21px;
+  font-size: 14px;
+  color: #57606a;
+  cursor: pointer;
+}
+
+.filterList > span:hover {
+  color: #000;
+  font-weight: 500;
 }
 
 .textFilter {
