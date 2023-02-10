@@ -1,10 +1,13 @@
 import React from 'react';
 
 import styles from './Badge.module.css';
-import cx from 'clsx';
 
-const Badge = ({ title, bgColor }) => {
-  return <span className={cx(styles.badge, styles[bgColor])}>{title}</span>;
+const Badge = ({ name, color }) => {
+  return (
+    <span className={styles.badge} style={{ backgroundColor: `#${color}` }}>
+      {name}
+    </span>
+  );
 };
 
 export default Badge;
