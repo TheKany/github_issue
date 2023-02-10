@@ -58,8 +58,8 @@ const Footer = () => {
         </li>
         {footerItems.map(({ title, link }) => {
           return (
-            <li className={styles.item}>
-              <a className={styles.itemLink} href={link} key={title}>
+            <li className={styles.item} key={title}>
+              <a className={styles.itemLink} href={link}>
                 {title}
               </a>
             </li>
