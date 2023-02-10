@@ -1,21 +1,30 @@
 import React from 'react';
-import Badge from './Badge';
+import dayjs from 'dayjs';
 
 import styles from './ListItem.module.css';
 import ListItemLayout from './ListItemLayout';
 
-const ListItem = ({ isChecked, onChangeCheckBox, onClickTitle, badges }) => {
+import Badge from './Badge';
+
+const ListItem = ({ isChecked, onClickCheckBox, onClickTitle, data }) => {
+  const badges = data.labels;
+  const dataState = data.state === 'open' ? 'opened' : 'closed';
+  const dataDate = data.state === 'open' ? data.created_at : data.closed_at;
+
   return (
-    <ListItemLayout>
+    <ListItemLayout isChecked={isChecked} onClickCheckBox={onClickCheckBox}>
       <div>
         <div role="button" onClick={onClickTitle} className={styles.title}>
-          Issue Example
-          {badges &&
+          {data.title}
+          {badges.length > 0 &&
             badges.map((badgeProps, idx) => (
               <Badge key={idx} {...badgeProps} />
             ))}
         </div>
-        <div className={styles.description}># Description</div>
+        <div className={styles.description}>
+          #{data.number} {dataState} {dayjs(dataDate).fromNow()} by{' '}
+          {data.user.login}
+        </div>
       </div>
     </ListItemLayout>
   );

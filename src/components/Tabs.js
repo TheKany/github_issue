@@ -29,14 +29,14 @@ const Tab = ({ title, number, selected, onclick }) => {
 };
 
 const Tabs = () => {
-  const [selectedTabIdx, setSelectedTabIdx] = useState(0);
+  const [selectedTabIdx, setSelectedTabIdx] = useState(1);
 
   return (
     <ul className={styles.tabList}>
       {tabList.map((tab, idx) => {
         return (
           <Tab
-            key={`${idx}`}
+            key={idx}
             title={tab}
             selected={selectedTabIdx === idx}
             onClick={() => setSelectedTabIdx(idx)}

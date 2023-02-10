@@ -1,12 +1,10 @@
 .listContainer {
   padding: 0 32px;
   margin-top: 24px;
-  height: 220px;
 }
 
 .listContainer .topSection {
   display: flex;
-  flex-direction: 'space-between';
   margin-bottom: 20px;
 }
 
@@ -22,6 +20,8 @@
 }
 
 .listFilter {
+  display: flex;
+  justify-content: flex-start;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   background: rgb(246, 248, 250);
@@ -69,4 +69,5 @@
 .paginationContainer {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }

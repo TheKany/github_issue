@@ -15,11 +15,18 @@ const Modal = ({
   const [filteredData, setFilteredData] = useState(searchDataList);
 
   useEffect(() => {
-    setFilteredData(
-      searchDataList.filter(
-        (item) => item.toLowerCase() === searchValue.toLowerCase(),
-      ),
-    );
+    setFilteredData(searchDataList);
+  }, [searchDataList]);
+
+  useEffect(() => {
+    if (searchValue === '') {
+      setFilteredData(searchDataList);
+    } else {
+      const filteredSearchList = searchDataList.filter((item) =>
+        item.name.toLowerCase().includes(searchValue.toLowerCase()),
+      );
+      setFilteredData(filteredSearchList);
+    }
   }, [searchDataList, searchValue]);
 
   return (
@@ -35,11 +42,23 @@ const Modal = ({
           onChange={(e) => setSearchValue(e.target.value)}
         />
       </div>
-      {filteredData.map((data) => (
-        <div role="button" key={data} onClick={onClickCell}>
-          {data}
-        </div>
-      ))}
+      <div className={styles.modalList}>
+        {filteredData.map((data) => (
+          <div
+            role="button"
+            key={data.name}
+            className={styles.modalItem}
+            onClick={() => {
+              const isLabel = title.toLowerCase() === 'label';
+              const paramKey = isLabel ? 'labels' : title.toLowerCase();
+
+              onClickCell({ [paramKey]: data.name });
+            }}
+          >
+            {data.name}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
