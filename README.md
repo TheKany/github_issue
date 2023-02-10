@@ -1,5 +1,8 @@
 # Github_issue 페이지 만들기
 
+![image](https://user-images.githubusercontent.com/105787985/217983100-0185c87b-4b68-4daf-8f71-b60dcbdd62e4.png)
+
+
 ## skill
 
 1. Html / CSS
