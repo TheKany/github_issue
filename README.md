@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/105787985/217983100-0185c87b-4b68-4daf-8f71-b60dcbdd62e4.png)
 
 ---
-### 진행상황
+### 🛠진행상황
 
 ![image](https://user-images.githubusercontent.com/105787985/217983230-153439a2-1bf0-44cb-89fe-da3d56d0d77a.png)
 
