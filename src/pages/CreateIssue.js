@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Button from '../components/Button';
 import TextField from '../components/TextField';
@@ -20,6 +21,8 @@ const validate = (values) => {
 const CreateIssue = () => {
   const inputRef = useRef();
   const textareaRef = useRef();
+  const navigate = useNavigate();
+
   const { isSubmitting, inputValues, onChange, errors, handleSubmit } = useForm(
     {
       initialValues: { title: '', body: '' },
@@ -37,6 +40,9 @@ const CreateIssue = () => {
       validate,
       refs: { title: inputRef, body: textareaRef },
       onErrors: () => console.log('error'),
+      onSuccess: (result) => {
+        navigate('/', { replace: true });
+      },
     },
   );
 
