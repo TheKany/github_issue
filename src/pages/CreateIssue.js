@@ -36,6 +36,7 @@ const CreateIssue = () => {
         ),
       validate,
       refs: { title: inputRef, body: textareaRef },
+      onErrors: () => console.log('error'),
     },
   );
 

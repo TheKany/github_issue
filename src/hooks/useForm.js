@@ -29,7 +29,7 @@ export const useForm = ({
     if (errorKeys.length !== 0) {
       const key = errorKeys[0];
       alert(validateResult[key]);
-      // onErrors();
+      onErrors();
       refs[key].current.focus();
       setIsSubmitting(false);
       return;
