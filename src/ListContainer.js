@@ -10,6 +10,7 @@ import ListItemLayout from './components/ListItemLayout';
 import Modal from './components/Modal';
 import Pagination from './components/Pagination';
 import { GITHUB_API } from './constants';
+import { Link, useSearchParams } from 'react-router-dom';
 
 const MAX_PAGE = 10;
 
@@ -32,13 +33,13 @@ const OpenClosedFilters = ({ isOpenMode, onClickMode }) => {
         // size={openData}
         state={'Open'}
         selected={isOpenMode}
-        onClick={() => onClickMode(true)}
+        onClick={() => onClickMode('open')}
       />
       <OpenClosedFilter
         // size={closeData}
         state={'Closed'}
         selected={!isOpenMode}
-        onClick={() => onClickMode(false)}
+        onClick={() => onClickMode('closed')}
       />
     </>
   );
@@ -151,21 +152,22 @@ const ListContainer = () => {
   const [inputValue, setInputValue] = useState('is:pr is:open');
   const [checked, setChecked] = useState(false);
   const [list, setList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isOpenMode, setIsOpenMode] = useState(true);
-  const [params, setParams] = useState();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get('page') ?? '1', 10);
+  const state = searchParams.get('state');
 
   const getData = async (params) => {
     const { data } = await axios.get(
-      `${GITHUB_API}/repos/facebook/react/issues`,
+      `${GITHUB_API}/repos/TheKany/github_issue/issues`,
       { params },
     );
     setList(data);
   };
 
   useEffect(() => {
-    getData({ page, state: isOpenMode ? 'open' : 'closed', ...params });
-  }, [page, isOpenMode, params]);
+    getData(searchParams);
+  }, [searchParams]);
 
   return (
     <>
@@ -178,26 +180,28 @@ const ListContainer = () => {
               setInputValue(e.target.value);
             }}
           />
-          <Button
-            style={{
-              backgroundColor: '#2DA44E',
-              color: 'white',
-              fontSize: '14px',
-            }}
-          >
-            New Issue
-          </Button>
+          <Link to="/new">
+            <Button
+              style={{
+                backgroundColor: '#2DA44E',
+                color: 'white',
+                fontSize: '14px',
+              }}
+            >
+              New Issue
+            </Button>
+          </Link>
         </div>
 
         <OpenClosedFilters
-          isOpenMode={isOpenMode}
-          onClickMode={setIsOpenMode}
+          isOpenMode={state !== 'closed'}
+          onClickMode={(mode) => setSearchParams({ mode })}
         />
 
         <ListItemLayout className={styles.listFilter}>
           <ListFilter
             onChangeFilter={(params) => {
-              setParams(params);
+              setSearchParams(params);
             }}
           />
         </ListItemLayout>
@@ -218,7 +222,7 @@ const ListContainer = () => {
           maxPage={MAX_PAGE}
           currentPage={page}
           onClickPageButton={(number) => {
-            setPage(number);
+            setSearchParams({ page: number });
           }}
         />
       </div>

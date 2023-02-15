@@ -13,7 +13,7 @@ const Header = () => {
         <div className={styles.headerNav}>
           <img src={logo} alt="logo" />
           <span role="button">TheKany</span>
-          <span role="button">github_Clone</span>
+          <span role="button">github_issue</span>
         </div>
         <div className={styles.buttonContainer}>
           <Button
