@@ -14,10 +14,13 @@ import Actions from './pages/Actions';
 import Wiki from './pages/Wiki';
 import Insight from './pages/Insight';
 import Setting from './pages/Setting';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Nav />
       <Header />
       <Routes>
@@ -33,7 +36,7 @@ const App = () => {
         <Route path="/insight" element={<Insight />} />
         <Route path="/setting" element={<Setting />} />
       </Routes>
-    </>
+    </QueryClientProvider>
   );
 };
 

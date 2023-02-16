@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from '../hooks/useForm';
+import { useUser } from '../hooks/useUser';
 
 import Button from '../components/Button';
 import TextField from '../components/TextField';
 import { GITHUB_API } from '../constants';
-import { useForm } from '../hooks/useForm';
 
 import styles from './CreateIssue.module.css';
 
@@ -22,6 +23,9 @@ const CreateIssue = () => {
   const inputRef = useRef();
   const textareaRef = useRef();
   const navigate = useNavigate();
+  const user = useUser();
+
+  console.log({ user });
 
   const { isSubmitting, inputValues, onChange, errors, handleSubmit } = useForm(
     {
